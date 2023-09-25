@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Vendors
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>VENDORS</h1>
+        <button onclick="show('#vendorForm'); hide('#newVendor'); show('#cancel'); show('#addVendor')" class="btn new" id="newVendor">New vendor</button>
+
+        <div id="vendorForm" style="display:none">
+            <form action="/newvendor" method="POST">
+                <button type="submit" class="btn new" style="display:none" id="addVendor" value="add">Add</button>
+                <button type="submit" class="btn new" style="display:none" id="updateVendor" value="update">Update</button>
+                <button type="button" onclick="hide('#vendorForm'); show('#newVendor')" class="btn" id="cancel" style="display:none">Cancel</button>
+                <div class="form-group">
+                    <label for="number">Legal name</label>
+                    <input type="text" class="form-control" id="legalName" name="legalName" aria-describedby="emailHelp" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="name">City</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="name">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" placeholder="">
+                </div>
+
+            </form>
+        </div>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Legal Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Country</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vendor in vendors %}
+                <tr>
+                    <td scope="row">{{ vendor.id }}</td>
+                    <td>{{ vendor.legal_name }}</td>
+                    <td>{{ vendor.city }}</td>
+                    <td>{{ vendor.country }}</td>
+                    <td>
+                        <a class="edit" href="/vendor/{{ vendor.id }}">Edit</a>
+                    </td>
+                    <td>
+                        <a class="danger" href="/vendor/delete/{{ vendor.id }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

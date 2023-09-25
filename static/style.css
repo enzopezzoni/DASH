@@ -1,0 +1,80 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+h1 {
+    color: #30586A;
+    margin: 20px 0px 30px 0px;
+}
+
+h4 {
+  margin: 30px 0px 15px 15px;
+  color: White;
+}
+
+.danger {
+  color: #E6212A;
+}
+
+.classic {
+  color: #30586A;
+}
+
+.edit{
+  color: #FCD46D;
+}
+
+.btn.new {
+  background-color: #87CBC9 !important;
+}
+
+.btn.signIN {
+  background-color:#87CBC9 !important;
+}
+
+.btn.signUP {
+  background-color:#FCD46D !important;
+}
+
+thead th {
+    background-color: #30586A !important;
+    color: white !important;
+}
+
+.btn {
+    background-color: #30586A !important;
+    color: white;
+    margin: 10px 0px 10px 0px;
+  }
+
+.btn-search {
+    display:none
+  }
+
+.search-field {
+  width:450px;
+  display: inline;
+  margin-bottom:10px;
+}
+
+.tracker-KPI {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color: white;
+  height:75px;
+  font-size:15px;
+}
+
+#tracker-total {
+  background-color:#87CBC9;
+}
+#tracker-expired {
+  background-color:#E6212A;
+}
+#tracker-expiring {
+  background-color:#FCD46D;
+}

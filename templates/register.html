@@ -1,0 +1,52 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <script src="/static/java.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Login</title>
+</head>
+    <body>
+    <div class="container">
+        <br><br><br>
+        <img src="static/dash.jpg" alt="logo" width=auto height="150" class="center">
+        <br><br>
+        <h1>REGISTER</h1>
+        <div class="login">
+            <p style="color:red;">{{ error_message }}</p>
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <label for="number">Full name</label>
+                    <input type="text" class="form-control" id="fullName" name="fullName">
+                </div>
+                <div class="form-group">
+                    <label for="number">Email address</label>
+                    <input type="text" class="form-control" id="emailAddress" name="emailAddress">
+                </div>
+                <div class="form-group">
+                    <label for="sollicitation">Organization</label>
+                    <select class="form-control" id="org" name="org" >
+                        <option></option>
+                        <option>Marketing</option>
+                        <option>Finance</option>
+                        <option>Information Technology</option>
+                        <option>Human Ressources</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="name">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="name">Confirm password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                </div>
+                <a href="/login"><button type="button" class="btn" id="signIN">Cancel</button></a>
+                <button type="submit" class="btn signIN" id="signIN">Register</button>
+            </form>
+        </div>
+    </div>
+</body>

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tracker
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>TRACKER</h1>
+        <div class="row">
+            <div class="col">
+                <div class="tracker-KPI" id="tracker-total">
+                    <div>TOTAL</div>
+                    <div style="font-weight:bold">{{ total_contract['count'] }}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="tracker-KPI" id="tracker-expiring">
+                    <div>EXPIRING</div>
+                    <div style="font-weight:bold">{{ total_expiring['count'] }}</div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="tracker-KPI" id="tracker-expired">
+                    <div>EXPIRED</div>
+                    <div style="font-weight:bold">{{ total_expired['count'] }}</div>
+                </div>
+            </div>
+        </div>
+        <h4 style="color:#E6212A">Contracts expired</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">Expired for (days)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contract in expired %}
+                <tr>
+                    <td scope="row">{{ contract.number }}</td>
+                    <td>{{ contract.name }}</td>
+                    <td>{{ contract.vendor }}</td>
+                    <td>{{ contract.end }}</td>
+                    <td>{{ (today - contract.end|to_date).days }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h4 style="color:#FCD46D">Contracts expiring in the next 30 days</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">Expiring in (days)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contract in expiring %}
+                <tr>
+                    <td scope="row">{{ contract.number }}</td>
+                    <td>{{ contract.name }}</td>
+                    <td>{{ contract.vendor }}</td>
+                    <td>{{ contract.end }}</td>
+                    <td>{{ (contract.end|to_date - today).days }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

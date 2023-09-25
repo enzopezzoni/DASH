@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Contracts
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>CONTRACTS - {{ user_orga }}</h1>
+        <form action="/newcontract">
+            <button type="submit" class="btn new">Add a contract</button>
+        </form>
+        <form action="/contracts" method="get">
+        <input type="text" class="form-control search-field" id="search" name="search" placeholder="Search" value="{{ search }}">
+        <button type="submit" class="btn btn-search"></button>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">Start date</th>
+                    <th scope="col">End date</th>
+                    <th scope="col">Total Value</th>
+                    <th scope="col">Bid Solicitation</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contract in contracts %}
+                <tr>
+                    <td scope="row">{{ contract.number }}</td>
+                    <td>{{ contract.name }}</td>
+                    <td>{{ contract.vendor }}</td>
+                    <td>{{ contract.start }}</td>
+                    <td>{{ contract.end }}</td>
+                    <td>{{ contract.value | usd }}</td>
+                    <td>{{ contract.bid_sollicitation }}</td>
+                    <td>
+                        <a class="edit" href="/contracts/{{ contract.number }}">Edit</a>
+                    </td>
+                    <td>
+                        <a class="danger" href="/contract/delete/{{ contract.number }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

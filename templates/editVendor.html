@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit vendor
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>EDIT VENDOR - {{ vendor_selected.legal_name }}</h1>
+        <div id="vendorForm">
+            <form action="/vendor/{{ vendor_selected.id}}" method="POST">
+                <button type="submit" class="btn new" id="updateVendor" value="update">Update</button>
+                <div class="form-group">
+                    <label for="number">Legal name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ vendor_selected.legal_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="name">City</label>
+                    <input type="text" class="form-control" id="city" name="city" value="{{ vendor_selected.city }}">
+                </div>
+                <div class="form-group">
+                    <label for="name">Country</label>
+                    <input type="text" class="form-control" id="country" name="country" value="{{ vendor_selected.country }}">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

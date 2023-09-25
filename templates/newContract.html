@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    New contract
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>NEW CONTRACT</h1>
+        <p style="color:red;">{{ info_message }}</p>
+        <form action="/newcontract" method="POST">
+            <div class="form-group">
+                <label for="number">Agreement number</label>
+                <input type="text" class="form-control" id="number" name="number" aria-describedby="emailHelp" placeholder="">
+                <p style="color:red;">{{ error_message }}</p>
+            </div>
+            <div class="form-group">
+                <label for="name">Agreement name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="vendor">Vendor</label>
+                <select class="form-control" id="vendor" name="vendor" >
+                <option></option>
+                {% for vendor in vendor_list %}
+                <option value="{{ vendor['legal_name'] }}">{{ vendor['legal_name'] }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="value">Total value</label>
+                <input type="" class="form-control" id="value" name="value" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="start">Start date</label>
+                <input type="date" class="form-control" id="start" name="start" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="end">End date</label>
+                <input type="date" class="form-control" id="end" name="end" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="sollicitation">Bid sollicitation</label>
+                <select class="form-control" id="sollicitation" name="sollicitation" >
+                <option>Not applicable</option>
+                <option>On invitation</option>
+                <option>Public posting</option>
+                <option>Sole supplier exception</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Save</button>
+        </form>
+    </div>
+{% endblock %}

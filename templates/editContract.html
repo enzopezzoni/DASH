@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit contract
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <h1>EDIT CONTRACT - {{ contract.name }}</h1>
+        <p style="color:lightgrey">Contract owner: {{ owner.full_name }}</p>
+        <form action="/contract/update/{{ contract.number }}" method="POST">
+            <div class="form-group">
+                <label for="number">Agreement number</label>
+                <input type="text" class="form-control" id="number" name="number" value="{{ contract.number }}" readonly style="background-color:lightgrey">
+            </div>
+            <div class="form-group">
+                <label for="name">Agreement name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="..." value="{{ contract.name }}">
+            </div>
+            <div class="form-group">
+                <label for="vendor">Vendor</label>
+                <select class="form-control" id="vendor" name="vendor" >
+                <option></option>
+                {% for vendor in vendor_list %}
+                <option value="{{ vendor['legal_name'] }}" {% if vendor['legal_name'] == contract.vendor %}selected{% endif %}>{{ vendor['legal_name'] }}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="value">Total value</label>
+                <input type="" class="form-control" id="value" name="value" placeholder="..." value="{{ contract.value }}">
+            </div>
+            <div class="form-group">
+                <label for="start">Start date</label>
+                <input type="date" class="form-control" id="start" name="start" placeholder="..." value="{{ contract.start }}">
+            </div>
+            <div class="form-group">
+                <label for="end">End date</label>
+                <input type="date" class="form-control" id="end" name="end" placeholder="..." value="{{ contract.end }}">
+            </div>
+            <div class="form-group">
+                <label for="sollicitation">Bid sollicitation</label>
+                <select class="form-control" id="sollicitation" name="sollicitation">
+                <option {% if contract.bid_sollicitation == "Not applicable" %} selected="selected"{% endif %}>Not applicable</option>
+                <option {% if contract.bid_sollicitation == "On invitation" %} selected="selected"{% endif %}>On invitation</option>
+                <option {% if contract.bid_sollicitation == "Public posting" %} selected="selected"{% endif %}>Public posting</option>
+                <option {% if contract.bid_sollicitation == "Sole supplier exception" %} selected="selected"{% endif %}>Sole supplier exception</option>
+                </select>
+            <button type="submit" class="btn">Update</button>
+        </form>
+    </div>
+{% endblock %}
