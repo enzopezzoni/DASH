@@ -1,18 +1,18 @@
-from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
-from flask_session import Session
+import sqlite3
+from flask import Flask, redirect, render_template, request, session
 from helpers import usd, to_date
 from datetime import date, datetime, timedelta
 from functools import wraps
 
 app = Flask(__name__)
-db = SQL("sqlite:///dash.db")
+connection = sqlite3.connect("dash.db")
+db = connection.cursor()
 app.jinja_env.filters["usd"] = usd
 app.jinja_env.filters["to_date"] = to_date
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
+session(app)
 
 def login_required(f):
     @wraps(f)
